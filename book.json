@@ -1,0 +1,39 @@
+{
+    "title": "longyzw",
+    "author" : "longyzw",
+    "description" : "开发总结笔记",
+    "language" : "zh-hans",
+    "plugins": [
+        "intopic-toc",
+        "back-to-top-button",
+        "chapter-fold",
+        "code",
+        "custom-favicon",
+        "-sharing",
+        "sharing-plus",
+        "tbfed-pagefooter",
+        "lightbox",
+        "-lunr",
+        "-search",
+        "search-pro",
+        "pageview-count"
+    ],
+    "pluginsConfig": {
+        "favicon": "images/favicon.ico",
+        "all": ["douban", "facebook", "google", "weibo", "qq", "qzone"],
+        "sharing": {
+            "douban": true,
+            "facebook": true,
+            "google": true,
+            "weibo": true,
+            "qq": true,
+            "qzone": true
+        },
+        "tbfed-pagefooter": {
+            "copyright": "<span>©2019-2022 <a href='https://beian.miit.gov.cn' target='_blank' style='color: #4183c4 !important;text-decoration: none !important;'>蜀ICP备17040726号</a></span>",
+            "modify_label": "最后编辑时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss",
+            "modify_copy": ""
+        }
+    }
+}
