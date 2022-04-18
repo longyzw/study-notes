@@ -4,6 +4,8 @@
 
 项目模板选择 vite => vue3+ts
 
+[官方文档](https://pinia.vuejs.org/introduction.html)
+
 ## 安装
 
 - NPM
@@ -43,12 +45,10 @@ app.mount('#app')
 import { defineStore } from 'pinia'
 
 export const useAppStore = defineStore('app', {
-    state: () => {
-        return {
-            count: 1,
-            msg: 'Hello'
-        }
-    },
+    state: () => ({
+        count: 1,
+        msg: 'Hello'
+    }),
     getters: {
         // 方式1
         // doubleCount: (state) => state.count * 2,
@@ -159,48 +159,104 @@ function handleClickPatchState() {
 
 ## 组件之外使用
 
-修改仓库
-
-```typescript
-import { defineStore, createPinia } from 'pinia'
-
-export const useAppStore = defineStore('app', {
-    // ... do something
-})
-
-export function useAppStoreWithOut() {
-    return useAppStore(createPinia())
-}
-```
-
-创建测试文件`test.ts`，并且在main.ts中pinia挂载前引入
-
-```typescript
-// test.ts
-import { useAppStoreWithOut } from '~/store/app'
-
-const test = () => {
-    const appStore = useAppStoreWithOut()
-    console.log('111', appStore.count);
-}
-
-export default test
-```
+创建测试文件`test.ts`，并且在main.ts中pinia挂载后调用
 
 ```typescript
 // main.ts
-
+import { createPinia } from 'pinia'
 import test from '~/test'
+
+const store = createPinia()
+
+const app = createApp(App)
+app.use(store)
+app.mount('#app')
 
 test()
 ```
 
 ## 数据持久化
 
+[官方文档](https://seb-l.github.io/pinia-plugin-persist/)
+
 ### 安装插件
 
-```
+```sh
 yarn add pinia-plugin-persist
 ```
 
-### 
+### 挂载到pinia
+
+```typescript
+// main.ts
+import { createApp } from 'vue'
+import App from './App.vue'
+import { createPinia } from 'pinia'
+import piniaPersist from 'pinia-plugin-persist'
+
+const store = createPinia()
+store.use(piniaPersist)
+
+const app = createApp(App)
+app.use(store)
+app.mount('#app')
+```
+
+### 基础用法
+
+整个状态库开启sessionStorage存储
+
+```typescript
+export const useAppStore = defineStore('app', {
+    state: () => ({}),
+    getters: {},
+    actions: {},
+    // 会以当前库的id为key进行存储
+    persist: {
+        enabled: true
+    }
+})
+```
+
+### 高级用法
+
+- 指定存储的key和存储方式
+
+```typescript
+export const useAppStore = defineStore('app', {
+    state: () => ({}),
+    getters: {},
+    actions: {},
+    persist: {
+        enabled: true,
+        strategies: [
+            {
+              key: 'user', // 指定存储的key
+              storage: localStorage, // 指定存储的方式
+            },
+        ],
+    }
+})
+```
+
+- 设置部分存储
+
+```typescript
+export const useAppStore = defineStore('app', {
+    state: () => ({}),
+    getters: {},
+    actions: {},
+    persist: {
+        enabled: true,
+        strategies: [
+            { storage: sessionStorage, paths: ['count'] },
+            { storage: localStorage, paths: ['msg'] },
+        ],
+    }
+})
+```
+
+- 自定义存储
+
+存储有效期的token之类
+
