@@ -20,6 +20,9 @@
     ],
     "pluginsConfig": {
         "favicon": "images/favicon.ico",
+        "intopic-toc": {
+            "label": "目录"
+        },
         "all": ["douban", "facebook", "google", "weibo", "qq", "qzone"],
         "sharing": {
             "douban": true,

@@ -62,3 +62,136 @@ gitbook serve --watch
 gitbook build
 ```
 
+## 常用插件配置
+
+项目根目录创建`book.json`
+
+安装插件依赖：`gitbook install`
+
+```json
+{
+    "title": "longyzw",
+    "author" : "longyzw",
+    "description" : "描述",
+    "language" : "zh-hans",
+    "plugins": [],
+}
+```
+
+- #### 内联目录
+
+  `intopic-toc`
+
+  ```json
+  {
+    "plugins": [
+      "intopic-toc"
+    ],
+    "pluginsConfig": {
+      "intopic-toc": {
+        "label": "内联目录名称"
+      }
+    }
+  }
+  ```
+
+- #### 回到顶部
+
+  `back-to-top-button`
+
+  ```json
+  {
+    "plugins": [
+      "back-to-top-button"
+    ]
+  }
+  ```
+
+- #### 导航目录折叠
+
+  `chapter-fold`
+
+  ```json
+  {
+    "plugins": [
+      "chapter-fold"
+    ]
+  }
+  ```
+
+- #### 复制代码
+
+  `code`
+
+  ```json
+  {
+    "plugins": [
+      "code"
+    ]
+  }
+  ```
+
+- #### 高级搜索
+
+  支持中英文，移除默认搜索
+
+  `search-pro`
+
+  ```json
+  {
+    "plugins": [
+      "-lunr",
+      "-search",
+      "search-pro",
+    ]
+  }
+  ```
+
+- #### 阅读量计数
+
+  `pageview-count`
+
+  ```json
+  {
+    "plugins": [
+      "pageview-count"
+    ]
+  }
+  ```
+
+- #### 修改标题栏图标
+
+  `custom-favicon`
+
+  ```json
+  {
+    "plugins": [
+      "custom-favicon"
+    ],
+    "pluginsConfig": {
+      "favicon": "images/favicon.ico"
+    }
+  }
+  ```
+
+- #### 页面添加页脚
+
+  `tbfed-pagefooter`
+
+  ```json
+  {
+    "plugins": [
+      "tbfed-pagefooter"
+    ],
+    "pluginsConfig": {
+      "tbfed-pagefooter": {
+          "copyright": "<span>©2019-2022 <a href='https://beian.miit.gov.cn' target='_blank' style='color: #4183c4 !important;text-decoration: none !important;'>蜀ICP备17040726号</a></span>",
+          "modify_label": "最后编辑时间：",
+          "modify_format": "YYYY-MM-DD HH:mm:ss",
+          "modify_copy": ""
+      }
+    }
+  }
+  ```
+
+  
