@@ -1,4 +1,4 @@
-# 其余配置
+# 插件配置
 
 ## 适配h5
 
@@ -57,5 +57,47 @@ plugins: [
 
 ```javascript
 <script setup lant="ts" name="ComponentsName"></script>
+```
+
+## mitt 事件总线
+
+vue3项目
+
+### 1、安装
+
+```sh
+yarn add mitt
+```
+
+### 2、配置
+
+```javascript
+// main.js
+
+import Mitt from 'mitt'
+
+app.config.globalProperties.$bus = new Mitt()
+```
+
+### 3、使用
+
+```javascript
+import { getCurrentInstance } from 'vue'
+
+const app = getCurrentInstance().appContext.config.globalProperties
+
+// 事件发布
+app.$bus.emit('event', data)
+```
+
+```javascript
+import { getCurrentInstance } from 'vue'
+
+const app = getCurrentInstance().appContext.config.globalProperties
+
+// 事件订阅
+app.$bus.on('event', (data) => {
+  // do some thing
+})
 ```
 

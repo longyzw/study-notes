@@ -1,7 +1,5 @@
 # Pinia状态管理
 
-[TOC]
-
 项目模板选择 vite => vue3+ts
 
 [官方文档](https://pinia.vuejs.org/introduction.html)
