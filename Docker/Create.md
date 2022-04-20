@@ -74,3 +74,31 @@ systemctl daemon-reload && systemctl restart docker
   ```sh
   systemctl stop firewalld.service
   ```
+
+## 所有容器操作命令
+
+- 启动所有的容器
+
+  ```sh
+  docker start $(docker ps -a | awk '{ print $1}' | tail -n +2)
+  ```
+
+- 关闭所有的容器
+
+  ```sh
+  docker stop $(docker ps -a | awk '{ print $1}' | tail -n +2)
+  ```
+
+- 删除所有的容器
+
+  ```sh
+  docker rm $(docker ps -a | awk '{ print $1}' | tail -n +2)
+  ```
+
+- 删除所有的镜像
+
+  ```sh
+  docker rmi $(docker images | awk '{print $3}' |tail -n +2)
+  ```
+
+  
