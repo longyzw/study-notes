@@ -104,3 +104,49 @@ for (const i in obj) {
 console.log(description)
 ```
 
+## 正则提取html标签内容
+
+```javascript
+const str = "<div style='color: #f60'>等待提取的内容</div>"
+const result = str.replace(/<[^>]*>|/g, '') // => 等待提取的内容
+```
+
+## 判断属性是否存在
+
+- 老写法：in运算符
+
+```javascript
+const obj = {
+    name: 'hello'
+}
+
+'name' in obj // => true
+'age' in obj // => false
+```
+
+- 新写法：Reflect
+
+```javascript
+const obj = {
+    name: 'hello'
+}
+
+Reflect.has(obj, 'name') // => true
+Reflect.has(obj, 'age') // => false
+```
+
+- 判断自身属性
+
+```javascript
+class Person {
+	constructor() {
+		this.name = 'hello'
+	}
+}
+Person.prototype.age = 18
+const person = new Person()
+
+person.hasOwnProperty('name') // => true
+person.hasOwnProperty('age') // => true
+```
+
