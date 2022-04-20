@@ -2,10 +2,7 @@
 
 
 * [Vue3](Vue3/README.md)
-* [Vite](Vite/README.md)
-
 * [Vuex](Vuex/README.md)
-
-	* [使用](Vuex/Introduction.md)
-* [其它配置 - Other](other.md)
+* [插件配置](Other/README.md)
+* [常用方法/组件封装](Methods.md)
 
