@@ -89,3 +89,18 @@ input:-webkit-autofill:active {
 }
 ```
 
+## flex横向滚动
+
+```css
+.parent-box {
+    display: flex;
+    width: 500px; /* 设置父级盒子宽度 */
+    overflow-x: auto; /* 设置横向溢出滚动 */
+}
+.child-item {
+    flex-shrink: 0; /* 收缩量设置为0 */
+    flex-basis: 100px; /* 设置初始长度，可以不设置，默认auto */
+    white-space: nowrap; /* 设置溢出换行为不换行 */
+}
+```
+
