@@ -1,6 +1,6 @@
 # 常用css方法
 
-## 文本溢出隐藏
+## 1、文本溢出隐藏
 
 ```scss
 // 文本溢出隐藏，默认隐藏单行
@@ -28,7 +28,7 @@
 
 隐藏多行：@include text-line(n);
 
-## 隐藏指定方向上的滚动条
+## 2、隐藏指定方向上的滚动条
 
 ```scss
 // 隐藏滚动条，默认y
@@ -43,7 +43,7 @@
 }
 ```
 
-## 网站初始化加载效果
+## 3、网站初始化加载效果
 
 css代码：
 
@@ -76,7 +76,7 @@ if (_app) {
 }
 ```
 
-## 表单默认自动填充样式
+## 4、表单默认自动填充样式
 
 ```css
 /* 延迟自动填充样式覆盖时间 */
@@ -89,7 +89,9 @@ input:-webkit-autofill:active {
 }
 ```
 
-## flex横向滚动
+## 5、flex横向滚动
+
+注：非移动端只能依靠拖动滚动条滚动内容
 
 ```css
 .parent-box {
@@ -102,5 +104,50 @@ input:-webkit-autofill:active {
     flex-basis: 100px; /* 设置初始长度，可以不设置，默认auto */
     white-space: nowrap; /* 设置溢出换行为不换行 */
 }
+```
+
+## 6、变量使用
+
+### 1）css中
+
+```css
+/* 变量声明 */
+:root {
+    --body-color: #f60;
+    --body-bg: pink
+}
+
+/* 使用 */
+body {
+    background-color: var(--body-bg);
+    color: var(--body-color);
+}
+```
+
+### 2）Vue中
+
+vue2：暂不支持
+
+vue3：
+
+```vue
+<script setup lang="ts">
+
+const color = '#ff6600'
+const color2 = 'red'
+</script>
+
+<template>
+  <div>
+    <div :style="{color}">文本颜色</div>
+    <div class="text">文本颜色2</div>
+  </div>
+</template>
+
+<style scoped>
+.text {
+  color: v-bind(color2);
+}
+</style>
 ```
 
