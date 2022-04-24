@@ -397,7 +397,9 @@ const errorEnum = {
     1: `位置 => ImportExcel方法；
         原因 => 没有文件`,
     2: `位置 => ImportExcel方法；
-        原因 => 文件类型不支持`
+        原因 => 文件类型不支持`,
+    3: `位置 => ImportExcel方法；
+        原因 => 文件内容格式不支持`
 }
 
 /** 导入Excel */
@@ -439,6 +441,11 @@ export const ImportExcel = ({
             const result = read(data, {
                 type: "binary"
             });
+        
+        	if(!result.Workbook) {
+                if(error) error(errorEnum[3])
+                throw(errorEnum[3])
+            }
 
             // 声明返回的数据
             const sendData: Array<SheetDataParams> = []
