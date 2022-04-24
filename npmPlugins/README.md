@@ -366,3 +366,116 @@ function doExport() {
 }
 ```
 
+## 五、Excel导入
+
+### 1、安装
+
+```sh
+yarn add xlsx
+```
+
+### 2、方法封装
+
+```typescript
+import { read, utils } from 'xlsx'
+
+export type SheetDataParams = {
+    sheetName: string, // 导入页名称
+    data: any[], // 导入的json数据
+}
+
+interface ImportParams {
+    /** 导出完成时回调 */
+    success?: Function,
+    /** 导出报错时回调 */
+    error?: Function,
+}
+
+
+// 异常枚举
+const errorEnum = {
+    1: `位置 => ImportExcel方法；
+        原因 => 没有文件`,
+    2: `位置 => ImportExcel方法；
+        原因 => 文件类型不支持`
+}
+
+/** 导入Excel */
+export const ImportExcel = ({
+    success,
+    error
+}: ImportParams) => {
+    const myInput = document.createElement('input')
+    myInput.id = 'myInput'
+    myInput.style.display = 'none'
+    myInput.type = 'file'
+    myInput.accept = '.xls,.xlsx'
+    // 执行导入
+    myInput.click()
+    // 监听文件上传
+    myInput.onchange = function() {
+        
+        if(!myInput.files) {
+            if(error) error(errorEnum[1])
+            throw(errorEnum[1])
+        }
+        
+        const file = myInput.files[0]
+
+        const startIndex = file.name.lastIndexOf('.') > -1 ? file.name.lastIndexOf('.') + 1 : 0
+        const fileType = file.name.slice(startIndex,)
+        if(!['xls', 'xlsx'].includes(fileType)) {
+            if(error) error(errorEnum[2])
+            throw(errorEnum[2])
+        }
+
+        // 读取文件
+        const reader = new FileReader()
+
+        // 导入时
+        reader.onload = e => {
+            const data = e.target?.result
+
+            const result = read(data, {
+                type: "binary"
+            });
+
+            // 声明返回的数据
+            const sendData: Array<SheetDataParams> = []
+
+            if(result.SheetNames) {
+                result.SheetNames.map((item, i) => {
+                    sendData.push({
+                        sheetName: item,
+                        data: utils.sheet_to_json(
+                            result.Sheets[result.SheetNames[i]]
+                        )
+                    })
+                })
+            }
+
+            // 数据转换完成并返回
+            if(success) success(sendData)
+        };
+
+        reader.readAsBinaryString(file)
+    }
+}
+```
+
+### 3、使用
+
+```typescript
+import { ImportExcel } from './utils/excelImport'
+import type { SheetDataParams } from './utils/excelImport'
+
+ImportExcel({
+    success: (res: Array<SheetDataParams>) => {
+        console.log('导入数据json格式：', res);
+    },
+    error: (error) => {
+    	console.log('导入失败：', error)
+	}
+})
+```
+
