@@ -1,6 +1,6 @@
-# 自定义方法
+# 常用方法
 
-## 链式取值（解析字符串）
+## 1、链式取值（解析字符串）
 
 ```javascript
 /**
@@ -31,7 +31,7 @@ console.log(_get(data, 'a.b')); // 'Hello World'
 console.log(_get(data, 'a.c')); // 'a.c'
 ```
 
-## 格式化三分位
+## 2、格式化三分位
 
 ```javascript
 /**
@@ -48,7 +48,7 @@ console.log(numberFormat(56789.3463746)); // '56,789.3,463,746'
 console.log(numberFormat('hello')); // 'hello'
 ```
 
-## 获取数据类型
+## 3、获取数据类型
 
 ```javascript
 /**
@@ -72,7 +72,7 @@ console.log(dateType(() => {})); 	// 'Function'
 console.log(dateType(/\./)); 		// 'RegExp'
 ```
 
-## 获取图片详细信息
+## 4、获取图片详细信息
 
 ```javascript
 /**
@@ -94,7 +94,7 @@ export const imgInfo = (url) => {
 }
 ```
 
-## 查看对象实例属性
+## 5、查看对象实例属性
 
 ```javascript
 let description = ''
@@ -104,14 +104,14 @@ for (const i in obj) {
 console.log(description)
 ```
 
-## 正则提取html标签内容
+## 6、正则提取html标签内容
 
 ```javascript
 const str = "<div style='color: #f60'>等待提取的内容</div>"
 const result = str.replace(/<[^>]*>|/g, '') // => 等待提取的内容
 ```
 
-## 判断属性是否存在
+## 7、判断属性是否存在
 
 - 老写法：in运算符
 
@@ -148,5 +148,36 @@ const person = new Person()
 
 person.hasOwnProperty('name') // => true
 person.hasOwnProperty('age') // => true
+```
+
+## 8、复制
+
+```javascript
+/**
+ * @descriptoin '复制'
+ * @params {
+ 		msg: '复制的值',
+ 		callback: ‘成功的回调
+ 	}
+ */
+function copy(msg, callback) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(msg).then(() => {
+      callback()
+    })
+  } else {
+    const myInput = document.createElement('input')
+    myInput.value = msg
+    document.body.appendChild(myInput)
+    myInput.select()
+    document.execCommand('copy')
+    document.body.removeChild(myInput)
+    callback()
+  }
+}
+// 使用
+copy(msg, () => {
+    console.log('复制成功')
+})
 ```
 

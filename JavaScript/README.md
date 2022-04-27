@@ -2,7 +2,7 @@
 
 [ES6+](ES6+.md)
 
-[自定义方法](custom.md)
+[常用方法](custom.md)
 
 [原理实现](realization.md)
 

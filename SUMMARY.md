@@ -3,7 +3,7 @@
 * [JavaScript](JavaScript/README.md)
 	* [ES6+](JavaScript/ES6+.md)
 	* [axios封装](JavaScript/axios.md)
-	* [自定义方法](JavaScript/custom.md)
+	* [常用方法](JavaScript/custom.md)
 	* [常用算法](JavaScript/Algorithm.md)
 	
 * [TypeScript](TypeScript/README.md)

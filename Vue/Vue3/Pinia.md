@@ -4,7 +4,9 @@
 
 [官方文档](https://pinia.vuejs.org/introduction.html)
 
-## 安装
+## 一、pinia
+
+### 1、安装
 
 - NPM
 
@@ -18,7 +20,7 @@ npm install pinia
 yarn add pinia
 ```
 
-## 挂载到应用程序
+### 2、挂载到应用程序
 
 ```typescript
 // src/main.ts
@@ -35,7 +37,7 @@ app.mount('#app')
 
 ```
 
-## 创建store文件夹及对应文件
+### 3、创建store文件夹及对应文件
 
 ```typescript
 // src/store/app.ts
@@ -76,7 +78,7 @@ export const useAppStore = defineStore('app', {
 })
 ```
 
-## 使用
+### 4、使用
 
 App.vue
 
@@ -93,7 +95,7 @@ const appStore = useAppStore()
 </template>
 ```
 
-### 解构显示
+### 5、解构显示
 
 ```html
 <script setup lang="ts">
@@ -113,9 +115,7 @@ const { count, doubleCount } = storeToRefs(appStore)
 </template>
 ```
 
-
-
-## 修改state
+### 6、修改state
 
 App.vue
 
@@ -155,7 +155,7 @@ function handleClickPatchState() {
 
 ```
 
-## 组件之外使用
+### 7、组件之外使用
 
 创建测试文件`test.ts`，并且在main.ts中pinia挂载后调用
 
@@ -173,17 +173,17 @@ app.mount('#app')
 test()
 ```
 
-## 数据持久化
+## 二、数据持久化
 
 [官方文档](https://seb-l.github.io/pinia-plugin-persist/)
 
-### 安装插件
+### 1、安装插件
 
 ```sh
 yarn add pinia-plugin-persist
 ```
 
-### 挂载到pinia
+### 2、挂载到pinia
 
 ```typescript
 // main.ts
@@ -200,7 +200,7 @@ app.use(store)
 app.mount('#app')
 ```
 
-### 基础用法
+### 3、基础用法
 
 整个状态库开启sessionStorage存储
 
@@ -216,7 +216,7 @@ export const useAppStore = defineStore('app', {
 })
 ```
 
-### 高级用法
+### 4、高级用法
 
 - 指定存储的key和存储方式
 

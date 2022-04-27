@@ -1,6 +1,6 @@
 # vue3项目创建
 
-## 安装
+## 1、安装
 
 - NPM
 
@@ -20,15 +20,15 @@ yarn create vite
 pnpm create vite
 ```
 
-## 模板选择
+## 2、模板选择
 
-- setup-1：项目名称
+- #### setup-1：项目名称
 
 ```
 Project name: » vite-project
 ```
 
-- setup-2：框架选择
+- #### setup-2：框架选择
 
 ```
 Select a framework: » - Use arrow-keys. Return to submit.
@@ -40,7 +40,7 @@ Select a framework: » - Use arrow-keys. Return to submit.
     svelte
 ```
 
-- setup-3：框架版本
+- #### setup-3：框架版本
 
 ```
 Select a variant: » - Use arrow-keys. Return to submit.
@@ -48,7 +48,7 @@ Select a variant: » - Use arrow-keys. Return to submit.
 >   vue-ts
 ```
 
-- setup-4：创建完成-按照提示运行项目
+- #### setup-4：创建完成-按照提示运行项目
 
 ```
 Done. Now run:
