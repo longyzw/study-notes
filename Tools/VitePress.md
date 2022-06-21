@@ -58,14 +58,69 @@
   # 基础配置
   module.exports = {
     lang: 'zh-CN',
-    title: 'VitePress',
+    title: '🐷',
     description: 'note',
-    vite: {
-      server: {
-        host: '0.0.0.0',
-        port: 8080
+    // 主题配置
+    themeConfig: {
+      // 获取每个文件最后一次 git 提交的 UNIX 时间戳(ms)，同时它将以合适的日期格式显示在每一页的底部
+      lastUpdated: true, // string | boolean
+      // 启动页面丝滑滚动
+      smoothScroll: true,
+      // 导航栏配置
+      nav: [
+        { text: '介绍', link: '/introduce' },
+        { text: '个人网站', link: 'http://www.ylsong.com' },
+        { text: 'Github', link: 'https://github.com/admin-common-template' }
+      ],
+      // 侧边栏
+      sidebar: {
+        '/': getSidebar(),
       }
     }
   }
+  
+  function getSidebar() {
+    return [
+      {
+        text: "介绍",
+        link: "/introduce"
+      },
+      {
+        text: "Admin后台系统",
+        children: [
+          {
+            text: "环境搭建",
+            children: [
+              {
+                text: "初始化项目",
+                link: "/admin/environment/setup1"
+              },
+            ]
+          }
+        ],
+      },
+      {
+        text: "服务端",
+        link: "/server/"
+      },
+      {
+        text: "数据库",
+        link: "/sql/"
+      }
+    ]
+  }
   ```
-
+  
+  ```javascript
+  
+  import { defineConfig } from 'vite'
+  
+  export default defineConfig({
+      server: {
+          host: '0.0.0.0',
+          port: 8080
+      },
+  })
+  ```
+  
+  
